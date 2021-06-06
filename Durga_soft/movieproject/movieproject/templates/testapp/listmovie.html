@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list movie</title>
+</head>
+<body>
+<h1>Movies Information</h1>
+{% if movies_list %}
+<table>
+    <thead>
+    <th>Released Date </th>
+    <th> Movie Name </th>
+    <th>Hero</th>
+    <th>Heroine</th>
+    <th>Rating</th>
+    </thead>
+
+     {% load cust_filters %}
+    {% for movie in movies_list %}
+    <tr>
+
+        <td>{{ movie.rdate|date:'d-m-Y' }}</td>
+        <td>{{ movie.moviename|truncate_n:3 }}</td>
+        <td>{{ movie.hero|slice:'4'  }}</td>
+        <td>{{ movie.heroine|truncate_3 }}</td>
+        <td>{{ movie.rating }}</td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+{% endif %}
+
+</body>
+</html>
